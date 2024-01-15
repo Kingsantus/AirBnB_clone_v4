@@ -101,3 +101,15 @@ button:hover {
 .locations:hover .popover {
     visibility: visible;
 }
+.reviews h2 {
+  position: relative;
+}
+
+.show {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 14px; /* Adjust as needed */
+  color: #333; /* Adjust the color as needed */
+  margin-left: 10px; /* Adjust as needed */
+}

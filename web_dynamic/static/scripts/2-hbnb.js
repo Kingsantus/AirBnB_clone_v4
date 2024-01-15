@@ -4,7 +4,7 @@ $(document).ready(function () {
     var amenityIds = {};
 
     function updateAmenitiesList() {
-        var checkedAmenities = Object.values(amenityIds);
+        var checkedAmenities = Object.values(amenity_id);
         var amenitiesString = checkedAmenities.join(', ');
         $('.amenities h4').text(amenitiesString);
     }

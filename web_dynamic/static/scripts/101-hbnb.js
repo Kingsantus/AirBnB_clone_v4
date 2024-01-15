@@ -70,6 +70,35 @@ $(document).ready(function () {
     places_search()
 
     checkAPIStatus();
+     function fetchAndDisplayReviews() {
+        var reviewsList = $('.reviews-list');
+        var showSpan = $('.reviews h2 .show');
+
+        if (showSpan.text() === 'show') {
+            // Fetch and display reviews
+            $.ajax({
+                url: 'http://0.0.0.0:5001/api/v1/review',
+                type: 'GET',
+                success: function (reviews) {
+                    reviewsList.empty();
+                    reviews.forEach(function (review) {
+                        var li = $('<li>');
+                        li.append('<h3>' + review.user + ' the ' + review.date + '</h3>');
+                        li.append('<p>' + review.text + '</p>');
+                        reviewsList.append(li);
+                    });
+                },
+                error: function (error) {
+                    console.error('Error fetching reviews:', error);
+                }
+            });
+
+            showSpan.text('hide');
+        } else {
+            reviewsList.empty();
+            showSpan.text('show');
+        }
+    }
 
     $('button').click(function () {
         places_search();
@@ -86,6 +115,9 @@ $(document).ready(function () {
         }
 
         updateAmenitiesList();
+    });
+    $('.reviews h2 .show').click(function () {
+        fetchAndDisplayReviews();
     });
 });
 
